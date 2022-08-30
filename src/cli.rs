@@ -36,6 +36,7 @@ pub fn parse_args() -> Args {
     args
 }
 
+#[inline]
 pub fn setup_log(level: log::LevelFilter) {
     env_logger::Builder::from_default_env()
         .format_timestamp_secs()

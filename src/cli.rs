@@ -1,6 +1,8 @@
 use clap::Parser;
 use std::path::PathBuf;
 
+use crate::errors::Errcode;
+
 #[derive(Debug, Parser)]
 pub struct Args {
     /// Activate debug mode
@@ -21,7 +23,7 @@ pub struct Args {
 }
 
 #[allow(clippy::let_and_return)]
-pub fn parse_args() -> Args {
+pub fn parse_args() -> Result<Args, Errcode> {
     let args = Args::parse();
 
     if args.debug {
@@ -30,10 +32,10 @@ pub fn parse_args() -> Args {
         setup_log(log::LevelFilter::Info);
     }
 
-    // TODO
+    // TODO:
     // Validate arguments
 
-    args
+    Ok(args)
 }
 
 #[inline]

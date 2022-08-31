@@ -1,7 +1,16 @@
 mod cli;
+mod errors;
+
+use errors::exit_with_retcode;
 
 fn main() {
-    let args = cli::parse_args();
-
-    log::info!("{:?}", args);
+    match cli::parse_args() {
+        Ok(args) => {
+            log::info!("{:?}", args);
+            exit_with_retcode(Ok(()));
+        },
+        Err(e) => {
+            log::error!("Error while parsing arguments:\n\t{}", e);
+        }
+    };
 }

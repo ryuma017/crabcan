@@ -1,7 +1,9 @@
 use std::{fmt, process};
 
 #[derive(Debug)]
-pub enum Errcode {}
+pub enum Errcode {
+    ArgumentInvalid(&'static str),
+}
 
 impl Errcode {
     fn get_retcode(&self) -> i32 {
@@ -12,8 +14,8 @@ impl Errcode {
 #[allow(clippy::match_single_binding)]
 impl fmt::Display for Errcode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            _ => write!(f, "{:?}", self)
+        match *self {
+            Errcode::ArgumentInvalid(element) => write!(f, "ArgumentInvalid:{}", element),
         }
     }
 }

@@ -1,8 +1,4 @@
-use crate::{
-    cli::Args,
-    errors::Errcode,
-    config::ContainerOpts,
-};
+use crate::{cli::Args, config::ContainerOpts, errors::Errcode};
 
 pub struct Container {
     config: ContainerOpts,
@@ -10,11 +6,7 @@ pub struct Container {
 
 impl Container {
     pub fn new(args: Args) -> Result<Container, Errcode> {
-        let config = ContainerOpts::new(
-            args.command,
-            args.uid,
-            args.mount_dir,
-        )?;
+        let config = ContainerOpts::new(args.command, args.uid, args.mount_dir)?;
         Ok(Container { config })
     }
 

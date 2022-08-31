@@ -1,6 +1,6 @@
-mod container;
-mod config;
 mod cli;
+mod config;
+mod container;
 mod errors;
 
 use errors::exit_with_retcode;
@@ -10,7 +10,7 @@ fn main() {
         Ok(args) => {
             log::info!("{:?}", args);
             exit_with_retcode(Ok(()));
-        },
+        }
         Err(e) => {
             log::error!("Error while parsing arguments:\n\t{}", e);
         }

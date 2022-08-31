@@ -25,7 +25,7 @@ pub fn exit_with_retcode(res: Result<(), Errcode>) {
         Ok(_) => {
             log::debug!("Exit without any error, returning 0");
             process::exit(0);
-        },
+        }
         Err(e) => {
             let retcode = e.get_retcode();
             log::error!("Error on exit:\n\t{}\n\tReturning {}", e, retcode);

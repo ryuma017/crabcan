@@ -16,18 +16,17 @@ pub struct ContainerOpts {
 
 impl ContainerOpts {
     pub fn new(command: String, uid: u32, mount_dir: PathBuf) -> Result<Self, Errcode> {
-        let argv: Vec<CString> = command.split_whitespace()
+        let argv: Vec<CString> = command
+            .split_whitespace()
             .map(|s| CString::new(s).expect("Cannot read arg"))
             .collect();
         let path = argv[0].to_owned();
 
-        Ok(
-            Self {
-                path,
-                argv,
-                uid,
-                mount_dir,
-            }
-        )
+        Ok(Self {
+            path,
+            argv,
+            uid,
+            mount_dir,
+        })
     }
 }

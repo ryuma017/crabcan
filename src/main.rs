@@ -1,7 +1,12 @@
+use std::process;
+
+#[macro_use]
+extern crate scan_fmt;
 mod cli;
 mod config;
 mod container;
 mod errors;
+mod ipc;
 
 use errors::exit_with_retcode;
 
@@ -13,6 +18,7 @@ fn main() {
         }
         Err(e) => {
             log::error!("Error while parsing arguments:\n\t{}", e);
+            process::exit(e.get_retcode());
         }
     };
 }
